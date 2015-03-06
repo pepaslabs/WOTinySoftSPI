@@ -28,6 +28,10 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*
+ * Forked by Jason Pepas (Pepas Labs, LLC) to remove MISO pin requirement.
+ * See https://github.com/pepaslabs/WriteOnlySoftSPI
+ */
 
 #ifndef _WRITEONLYSOFTSPI_H
 #define _WRITEONLYSOFTSPI_H
