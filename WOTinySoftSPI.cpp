@@ -159,5 +159,4 @@ void WOTinySoftSPI::transfer(uint8_t val) {
             asm volatile("nop");
         }
     }
-    return out;
 }
