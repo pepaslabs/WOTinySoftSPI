@@ -33,8 +33,8 @@
  * See https://github.com/pepaslabs/WriteOnlySoftSPI
  */
 
-#ifndef _WRITEONLYSOFTSPI_H
-#define _WRITEONLYSOFTSPI_H
+#ifndef _WOTINYSOFTSPI_H
+#define _WOTINYSOFTSPI_H
 
 #include <Arduino.h>
 
@@ -49,7 +49,7 @@
 #define SPI_CLOCK_DIV32 0x06
 
 
-class WriteOnlySoftSPI : public SPIClass {
+class WOTinySoftSPI : public SPIClass {
     private:
         uint8_t _cke;
         uint8_t _ckp;
@@ -59,7 +59,7 @@ class WriteOnlySoftSPI : public SPIClass {
         uint8_t _order;
 
     public:
-        WriteOnlySoftSPI(uint8_t mosi, uint8_t sck);
+        WOTinySoftSPI(uint8_t mosi, uint8_t sck);
         void begin();
         void end();
         void setBitOrder(uint8_t);
