@@ -38,7 +38,7 @@
 WriteOnlySoftSPI::WriteOnlySoftSPI(uint8_t mosi, uint8_t sck) {
     _mosi = mosi;
     _sck = sck;
-    _delay = 2;
+    _delay = 128;
     _cke = 0;
     _ckp = 0;
     _order = MSBFIRST;
