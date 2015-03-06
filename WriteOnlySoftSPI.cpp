@@ -28,12 +28,15 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+/*
+ * Forked by Jason Pepas (Pepas Labs, LLC) to remove MISO pin requirement.
+ * See https://github.com/pepaslabs/WriteOnlySoftSPI
+ */
 
-#include <SoftSPI.h>
+#include <WriteOnlySoftSPI.h>
 
-SoftSPI::SoftSPI(uint8_t mosi, uint8_t miso, uint8_t sck) {
+WriteOnlySoftSPI::WriteOnlySoftSPI(uint8_t mosi, uint8_t sck) {
     _mosi = mosi;
-    _miso = miso;
     _sck = sck;
     _delay = 2;
     _cke = 0;
@@ -41,23 +44,21 @@ SoftSPI::SoftSPI(uint8_t mosi, uint8_t miso, uint8_t sck) {
     _order = MSBFIRST;
 }
 
-void SoftSPI::begin() {
+void WriteOnlySoftSPI::begin() {
     pinMode(_mosi, OUTPUT);
-    pinMode(_miso, INPUT);
     pinMode(_sck, OUTPUT);
 }
 
-void SoftSPI::end() {
+void WriteOnlySoftSPI::end() {
     pinMode(_mosi, INPUT);
-    pinMode(_miso, INPUT);
     pinMode(_sck, INPUT);
 }
 
-void SoftSPI::setBitOrder(uint8_t order) {
+void WriteOnlySoftSPI::setBitOrder(uint8_t order) {
     _order = order & 1;
 }
 
-void SoftSPI::setDataMode(uint8_t mode) {
+void WriteOnlySoftSPI::setDataMode(uint8_t mode) {
     switch (mode) {
         case SPI_MODE0:
             _ckp = 0;
@@ -78,7 +79,7 @@ void SoftSPI::setDataMode(uint8_t mode) {
     }
 }
 
-void SoftSPI::setClockDivider(uint8_t div) {
+void WriteOnlySoftSPI::setClockDivider(uint8_t div) {
     switch (div) {
         case SPI_CLOCK_DIV2:
             _delay = 2;
@@ -107,8 +108,7 @@ void SoftSPI::setClockDivider(uint8_t div) {
     }
 }
 
-uint8_t SoftSPI::transfer(uint8_t val) {
-    uint8_t out = 0;
+void WriteOnlySoftSPI::transfer(uint8_t val) {
 
     if (_order == LSBFIRST) {
         uint8_t v2 = 
@@ -134,14 +134,7 @@ uint8_t SoftSPI::transfer(uint8_t val) {
         }
 
         if (_cke) {
-            bval = digitalRead(_miso);
-            if (_order == LSBFIRST) {
-                out <<= 1;
-                out |= bval;
-            } else {
-                out >>= 1;
-                out |= bval << 7;
-            }
+            ;
         } else {
             digitalWrite(_mosi, val & (1<<bit) ? HIGH : LOW);
         }
@@ -159,14 +152,7 @@ uint8_t SoftSPI::transfer(uint8_t val) {
         if (_cke) {
             digitalWrite(_mosi, val & (1<<bit) ? HIGH : LOW);
         } else {
-            bval = digitalRead(_miso);
-            if (_order == LSBFIRST) {
-                out <<= 1;
-                out |= bval;
-            } else {
-                out >>= 1;
-                out |= bval << 7;
-            }
+            ;
         }
 
         for (uint8_t i = 0; i < del; i++) {
