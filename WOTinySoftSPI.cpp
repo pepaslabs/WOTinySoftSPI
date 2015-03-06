@@ -30,12 +30,12 @@
 
 /*
  * Forked by Jason Pepas (Pepas Labs, LLC) to remove MISO pin requirement.
- * See https://github.com/pepaslabs/WriteOnlySoftSPI
+ * See https://github.com/pepaslabs/WOTinySoftSPI
  */
 
-#include <WriteOnlySoftSPI.h>
+#include <WOTinySoftSPI.h>
 
-WriteOnlySoftSPI::WriteOnlySoftSPI(uint8_t mosi, uint8_t sck) {
+WOTinySoftSPI::WOTinySoftSPI(uint8_t mosi, uint8_t sck) {
     _mosi = mosi;
     _sck = sck;
     _delay = 128;
@@ -44,21 +44,21 @@ WriteOnlySoftSPI::WriteOnlySoftSPI(uint8_t mosi, uint8_t sck) {
     _order = MSBFIRST;
 }
 
-void WriteOnlySoftSPI::begin() {
+void WOTinySoftSPI::begin() {
     pinMode(_mosi, OUTPUT);
     pinMode(_sck, OUTPUT);
 }
 
-void WriteOnlySoftSPI::end() {
+void WOTinySoftSPI::end() {
     pinMode(_mosi, INPUT);
     pinMode(_sck, INPUT);
 }
 
-void WriteOnlySoftSPI::setBitOrder(uint8_t order) {
+void WOTinySoftSPI::setBitOrder(uint8_t order) {
     _order = order & 1;
 }
 
-void WriteOnlySoftSPI::setDataMode(uint8_t mode) {
+void WOTinySoftSPI::setDataMode(uint8_t mode) {
     switch (mode) {
         case SPI_MODE0:
             _ckp = 0;
@@ -79,7 +79,7 @@ void WriteOnlySoftSPI::setDataMode(uint8_t mode) {
     }
 }
 
-void WriteOnlySoftSPI::setClockDivider(uint8_t div) {
+void WOTinySoftSPI::setClockDivider(uint8_t div) {
     switch (div) {
         case SPI_CLOCK_DIV2:
             _delay = 2;
@@ -108,7 +108,7 @@ void WriteOnlySoftSPI::setClockDivider(uint8_t div) {
     }
 }
 
-void WriteOnlySoftSPI::transfer(uint8_t val) {
+void WOTinySoftSPI::transfer(uint8_t val) {
 
     if (_order == LSBFIRST) {
         uint8_t v2 = 
