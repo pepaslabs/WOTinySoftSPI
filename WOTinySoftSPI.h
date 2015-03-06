@@ -78,6 +78,6 @@ class WOTinySoftSPI {
         void setBitOrder(uint8_t);
         void setDataMode(uint8_t);
         void setClockDivider(uint8_t);
-        uint8_t transfer(uint8_t);
+        void transfer(uint8_t);
 };
 #endif
