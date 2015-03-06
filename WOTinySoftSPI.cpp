@@ -29,7 +29,7 @@
  */
 
 /*
- * Forked by Jason Pepas (Pepas Labs, LLC) to remove MISO pin requirement.
+ * Forked by Jason Pepas (Pepas Labs, LLC) to add ATTiny support and remove MISO pin requirement.
  * See https://github.com/pepaslabs/WOTinySoftSPI
  */
 
