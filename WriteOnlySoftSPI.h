@@ -38,7 +38,16 @@
 
 #include <Arduino.h>
 
-#include <SPI.h>
+//#include <SPI.h>
+// ATTiny's can't include SPI.h, so the following constants have been copied in:
+#define SPI_CLOCK_DIV4 0x00
+#define SPI_CLOCK_DIV16 0x01
+#define SPI_CLOCK_DIV64 0x02
+#define SPI_CLOCK_DIV128 0x03
+#define SPI_CLOCK_DIV2 0x04
+#define SPI_CLOCK_DIV8 0x05
+#define SPI_CLOCK_DIV32 0x06
+
 
 class WriteOnlySoftSPI : public SPIClass {
     private:
