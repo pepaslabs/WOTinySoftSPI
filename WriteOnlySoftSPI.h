@@ -29,8 +29,8 @@
  */
 
 
-#ifndef _SOFTSPI_H
-#define _SOFTSPI_H
+#ifndef _WRITEONLYSOFTSPI_H
+#define _WRITEONLYSOFTSPI_H
 
 #if (ARDUINO >= 100) 
 # include <Arduino.h>
@@ -40,18 +40,17 @@
 
 #include <SPI.h>
 
-class SoftSPI : public SPIClass {
+class WriteOnlySoftSPI : public SPIClass {
     private:
         uint8_t _cke;
         uint8_t _ckp;
         uint8_t _delay;
-        uint8_t _miso;
         uint8_t _mosi;
         uint8_t _sck;
         uint8_t _order;
 
     public:
-        SoftSPI(uint8_t mosi, uint8_t miso, uint8_t sck);
+        WriteOnlySoftSPI(uint8_t mosi, uint8_t sck);
         void begin();
         void end();
         void setBitOrder(uint8_t);
