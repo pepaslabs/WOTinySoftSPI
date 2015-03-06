@@ -49,7 +49,7 @@
 #define SPI_CLOCK_DIV32 0x06
 
 
-class WOTinySoftSPI : public SPIClass {
+class WOTinySoftSPI {
     private:
         uint8_t _cke;
         uint8_t _ckp;
