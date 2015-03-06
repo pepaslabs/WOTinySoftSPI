@@ -1,6 +1,6 @@
-WriteOnlySoftSPI
+WOTinySoftSPI
 =======
 
-Write-only Software SPI class for Arduino.  For use with parts which have no MISO connection.
+Write-only Software SPI class for ATtiny Arduino.
 
 Forked from https://github.com/MajenkoLibraries/SoftSPI
